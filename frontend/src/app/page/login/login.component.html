@@ -1,0 +1,16 @@
+<h2>เข้าสู่ระบบ</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="email">อีเมล</label>
+  <input id="email" type="email" formControlName="email" />
+  <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+    กรุณากรอกอีเมลที่ถูกต้อง
+  </div>
+
+  <label for="password">รหัสผ่าน</label>
+  <input id="password" type="password" formControlName="password" />
+  <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+    กรุณากรอกรหัสผ่าน
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">เข้าสู่ระบบ</button>
+</form>
