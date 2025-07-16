@@ -1,0 +1,54 @@
+<div class="parent">
+  <div class="container">
+    <div class="row flex-column flex-md-row g-0">
+      
+      <!-- IMAGE COLUMN -->
+      <div class="col-md-6 image-column">
+        <img src="https://undraw.co/api/illustrations/264fa3be-5b85-4891-a8fc-4e23f85b14c9" alt="Login Illustration">
+      </div>
+
+      <!-- LOGIN COLUMN -->
+      <div class="col-md-6 login-column">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm">
+          <div class="mb-3">
+            <label for="Codename" class="form-label">Codename</label>
+            <input 
+              type="codename" 
+              formControlName="Codename"
+              class="form-control" 
+              id="Codename" 
+              name="Codename" 
+              placeholder="Sxxxxxx" 
+              required 
+            >
+          </div>
+          
+          <div class="mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              formControlName="Password"
+              class="form-control" 
+              id="Password" 
+              name="Password" 
+              placeholder="Enter password" 
+              required 
+              autocomplete="current-password"
+            >
+          </div>
+          
+          <button type="button" (click)="onLogin()" class="btn btn-primary" id="loginBtn">
+            Sign In
+          </button>
+
+          <div class="form-text text-center mt-3">
+            Don't have an account? 
+            <a href="#" id="registerLink">Register</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
