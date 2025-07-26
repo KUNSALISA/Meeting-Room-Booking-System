@@ -36,27 +36,6 @@ main {
   padding: 2rem;
 }
 
-input[type="text"] {
-  border: solid 1px #7700ff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 4px;
-  display: inline-block;
-  width: 100%;
-}
-button {
-  padding: 10px;
-  border: solid 1px #6a30ac;
-  background: #7700ff;
-  color: rgb(255, 255, 255);
-  border-radius: 8px;
-}
-@media (min-width: 500px) and (max-width: 768px) {
-  input[type="text"] {
-    width: 70%;
-  }
-}
-
 @media (max-width: 600px) {
   .brand-name {
     padding: 1rem;
