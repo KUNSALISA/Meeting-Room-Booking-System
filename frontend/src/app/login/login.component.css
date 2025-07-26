@@ -15,15 +15,6 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.brand-name form {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;          
-  justify-content: flex-end; 
-  max-width: 350px;      
-}
-
 .brand-logo {
   width: 100px;
   height: 50px;
@@ -34,27 +25,6 @@ main {
 .content {
   flex: 1;
   padding: 2rem;
-}
-
-input[type="text"] {
-  border: solid 1px #7700ff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 4px;
-  display: inline-block;
-  width: 100%;
-}
-button {
-  padding: 10px;
-  border: solid 1px #6a30ac;
-  background: #7700ff;
-  color: rgb(255, 255, 255);
-  border-radius: 8px;
-}
-@media (min-width: 500px) and (max-width: 768px) {
-  input[type="text"] {
-      width: 70%;
-  }   
 }
 
 @media (max-width: 600px) {
