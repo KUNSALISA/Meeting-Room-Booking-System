@@ -65,6 +65,7 @@ func SetupDatabase() {
 	err := db.AutoMigrate(
 		&entity.User{},
 		&entity.Role{},
+		&entity.Type{},
 		&entity.Room{},
 		&entity.Booking{},
 	)
@@ -72,6 +73,7 @@ func SetupDatabase() {
 		log.Fatalf("AutoMigrate failed: %v", err)
 	}
 	SeedRoles()
+	SeedTypes()
 	SeedStatus()
 	SeedRooms()
 	SeedUsers()
@@ -103,49 +105,78 @@ func SeedStatus() {
 	}
 }
 
+func SeedTypes() {
+	types := []entity.Type{
+		{TypeName: "VIP"}, // Capacity >= 50
+		{TypeName: "ขนาดใหญ่"}, // Capacity >= 50
+		{TypeName: "ขนาดกลาง"}, // Capacity 10–49
+		{TypeName: "ขนาดเล็ก"}, // Capacity < 10
+	}
+
+	for _, t := range types {
+		db.FirstOrCreate(&t, entity.Type{TypeName: t.TypeName})
+	}
+}
+
 func SeedRooms() {
+
+	var types []entity.Type
+	db.Find(&types)
+
+	typeMap := make(map[string]uint)
+	for _, t := range types {
+		typeMap[t.TypeName] = t.ID
+	}
+
 	rooms := []entity.Room{
 		{
 			RoomName:  "Meeting Room Extra 1",
 			Location:  "ชั้น 12 อาคาร TX",
 			Capacity:  80,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["VIP"],
 		},
 		{
 			RoomName:  "Meeting Room Extra 2",
 			Location:  "ชั้น 12 อาคาร TX",
-			Capacity:  50,
+			Capacity:  60,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["VIP"],
 		},
 		{
 			RoomName:  "Meeting Room A1",
 			Location:  "ชั้น 1 อาคาร TX",
-			Capacity:  20,
+			Capacity:  100,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["ขนาดใหญ่"],
 		},
 		{
 			RoomName:  "Meeting Room A10",
 			Location:  "ชั้น 1 อาคาร TX",
 			Capacity:  10,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["ขนาดเล็ก"],
 		},
 		{
 			RoomName:  "Meeting Room B1",
 			Location:  "ชั้น 2 อาคาร TX",
 			Capacity:  20,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["ขนาดกลาง"],
 		},
 		{
 			RoomName:  "Meeting Room B2",
 			Location:  "ชั้น 2 อาคาร TX",
-			Capacity:  20,
+			Capacity:  30,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["ขนาดกลาง"],
 		},
 		{
 			RoomName:  "Meeting Room C1",
 			Location:  "ชั้น 3 อาคาร TX",
-			Capacity:  25,
+			Capacity:  8,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
+			TypeID:    typeMap["ขนาดเล็ก"],
 		},
 	}
 
@@ -252,7 +283,7 @@ func SeedBookings() {
 			Date:        date,
 			StartTime:   start,
 			EndTime:     end,
-			StatusID:      status.ID,
+			StatusID:    status.ID,
 			UserID:      user.ID,
 			RoomID:      room.ID,
 		}

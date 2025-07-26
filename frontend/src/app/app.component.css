@@ -19,9 +19,9 @@ main {
   margin-left: 10px;
   display: flex;
   align-items: center;
-  flex-grow: 1;          
-  justify-content: flex-end; 
-  max-width: 350px;      
+  flex-grow: 1;
+  justify-content: flex-end;
+  max-width: 350px;
 }
 
 .brand-logo {
@@ -53,8 +53,8 @@ button {
 }
 @media (min-width: 500px) and (max-width: 768px) {
   input[type="text"] {
-      width: 70%;
-  }   
+    width: 70%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -69,5 +69,65 @@ button {
 
   .content {
     padding: 1rem;
+  }
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+}
+
+.login-button {
+  margin-left: 1rem;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  color: #46236e;
+  border: 1px solid #ffffff;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e5d4ff;
+  color: #320b5d;
+}
+
+.signup-button {
+  margin-left: 1rem;
+  padding: 8px 14px;
+  background-color: #46236e;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #e5d4ff;
+  color: #320b5d;
+}
+
+@media (max-width: 600px) {
+  .brand-name {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-name form,
+  .login-button,
+  .signup-button {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .login-button,
+  .signup-button {
+    padding: 10px;
   }
 }

@@ -1,0 +1,94 @@
+<div class="signup-container">
+  <div class="signup-left">
+    <video autoplay muted loop>
+      <source src="/MRB.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="signup-right">
+    <div class="signup-box">
+      <img src="/Meet.png" alt="Logo" class="logo" />
+      <h2>Create Account</h2>
+      <form [formGroup]="signupForm" (ngSubmit)="submitSignup()">
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="codename">Codename</label>
+            <input
+              id="codename"
+              type="text"
+              formControlName="codename"
+              placeholder="Enter your codename"
+            />
+          </div>
+
+          <div class="form-group half-width">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              placeholder="Enter your password"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="firstname">First Name</label>
+            <input
+              id="firstname"
+              type="text"
+              formControlName="firstname"
+              placeholder="Enter your first name"
+            />
+          </div>
+
+          <div class="form-group half-width">
+            <label for="lastname">Last Name</label>
+            <input
+              id="lastname"
+              type="text"
+              formControlName="lastname"
+              placeholder="Enter your last name"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              id="phoneNumber"
+              type="text"
+              formControlName="phoneNumber"
+              placeholder="Enter your phone number"
+            />
+          </div>
+
+          <div class="form-group half-width">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+            />
+          </div>
+        </div>
+
+        <div class="form-group half-width">
+          <label for="image">Upload Image</label>
+          <input
+            id="image"
+            type="file"
+            formControlName="image"
+            accept="image/*"
+          />
+        </div>
+
+        <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>

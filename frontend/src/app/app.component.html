@@ -12,7 +12,10 @@
       <input type="text" placeholder="Filter" />
       <button class="primary" type="button">Search</button>
     </form>
-    <!-- <a [routerLink]="['/login']">Login</a> -->
+    <div class="auth-buttons">
+      <a class="signup-button" [routerLink]="['/signup']">Sign up</a>
+      <a class="login-button" [routerLink]="['/login']">Log in</a>
+    </div>
   </header>
   <section class="content">
     <router-outlet></router-outlet>

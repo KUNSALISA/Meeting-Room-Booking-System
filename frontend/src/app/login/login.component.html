@@ -1,1 +1,68 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-left">
+    <div class="login-box">
+      <img src="/Meet.png" alt="Logo" class="logo" />
+      <h2>Welcome</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div class="form-group">
+          <label for="codename">Codename</label>
+          <input
+            id="codename"
+            type="text"
+            formControlName="codename"
+            placeholder="Enter your codename"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <a class="forgot-link" (click)="openResetModal()">ลืมรหัสผ่าน?</a>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <video autoplay muted loop>
+      <source src="/MRB.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showResetModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeResetModal()">&times;</span>
+    <h3>เปลี่ยนรหัสผ่าน</h3>
+    <form [formGroup]="resetForm" (ngSubmit)="submitReset()">
+      <div class="form-group">
+        <label for="reset-codename">Codename</label>
+        <input
+          id="reset-codename"
+          type="text"
+          formControlName="codename"
+          placeholder="Enter your codename"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="new-password">New Password</label>
+        <input
+          id="new-password"
+          type="password"
+          formControlName="newPassword"
+          placeholder="Enter new password"
+        />
+      </div>
+
+      <button type="submit" [disabled]="resetForm.invalid">Submit</button>
+    </form>
+  </div>
+</div>

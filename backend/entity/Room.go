@@ -12,5 +12,8 @@ type Room struct {
 	Capacity  uint
 	Equipment pq.StringArray `gorm:"type:text[]"`
 
+	TypeID uint
+	Types   Type `gorm:"foreignKey:TypeID"`
+
 	Bookings []Booking `gorm:"foreignKey:RoomID"`
 }
