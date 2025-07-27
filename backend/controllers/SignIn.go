@@ -103,3 +103,39 @@ func ChangePassword(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Password updated successfully"})
 }
+
+func SignUpUser(c *gin.Context) {
+	var payload entity.User
+
+	if err := c.ShouldBindJSON(&payload); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	var userRole entity.Role
+	if err := config.DB().Where("role_name = ?", "User").First(&userRole).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "ไม่สามารถกำหนด Role เป็น User ได้"})
+		return
+	}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(payload.Password), bcrypt.DefaultCost)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "ไม่สามารถเข้ารหัสรหัสผ่านได้"})
+		return
+	}
+	payload.Password = string(hashedPassword)
+
+	payload.RoleID = userRole.ID
+
+	if err := config.DB().Create(&payload).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "ไม่สามารถเพิ่มผู้ใช้ใหม่ได้"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"message":  "สมัครสมาชิกสำเร็จ",
+		"user_id":  payload.ID,
+		"codename": payload.CodeName,
+		"email":    payload.Email,
+	})
+}

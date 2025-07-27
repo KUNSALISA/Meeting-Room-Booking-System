@@ -20,6 +20,7 @@ func main() {
 
 	r.POST("/signin", controllers.SignInUser)
 	r.PATCH("/change-password", controllers.ChangePassword)
+	r.POST("/signup", controllers.SignUpUser)
 
 	router := r.Group("/")
 	{

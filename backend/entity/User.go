@@ -19,3 +19,4 @@ type User struct {
 
 	Bookings []Booking `gorm:"foreignKey:UserID"`
 }
+

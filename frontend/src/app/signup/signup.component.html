@@ -82,7 +82,7 @@
           <input
             id="image"
             type="file"
-            formControlName="image"
+            (change)="onFileChange($event)"
             accept="image/*"
           />
         </div>

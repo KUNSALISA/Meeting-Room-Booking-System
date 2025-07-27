@@ -20,3 +20,20 @@ export interface PasswordIn {
   CodeName: string;
   NewPassword: string;
 }
+
+export interface SignupIn {
+  ID?: number;
+  CodeName: string;
+  Password: string;
+  Firstname: string;
+  Lastname: string;
+  Image: string;
+  Email: string;
+  PhoneNumber: string;
+  RoleID: number;
+}
+
+interface RoleIn {
+  ID: number;
+  RoleName: string;
+}
