@@ -62,7 +62,7 @@ export class LoginComponent {
               role: res.role,
             };
             localStorage.setItem('user', JSON.stringify(userData));
-            this.router.navigate(['/login']);
+            this.router.navigate(['']);
           },
           error: (err) => {
             console.error('Login error:', err.message);
