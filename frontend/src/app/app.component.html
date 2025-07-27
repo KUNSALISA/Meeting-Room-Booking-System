@@ -9,38 +9,24 @@
       />
     </a>
     <div class="auth-buttons">
-      <a class="signup-button" [routerLink]="['/signup']">Sign up</a>
-      <a class="login-button" [routerLink]="['/login']">Log in</a>
+      <ng-container *ngIf="!user; else loggedIn">
+        <a class="signup-button" [routerLink]="['/signup']">Sign up</a>
+        <a class="login-button" [routerLink]="['/login']">Log in</a>
+      </ng-container>
+      <ng-template #loggedIn>
+        <div class="user-info">
+          <img
+            [src]="user?.image || '/profile-picture.png'"
+            alt="User Image"
+            class="user-avatar"
+          />
+          <span>{{ user?.first_name }} {{ user?.last_name }}</span>
+          <button class="logout-button" (click)="logout()">Logout</button>
+        </div>
+      </ng-template>
     </div>
   </header>
   <section class="content">
     <router-outlet></router-outlet>
   </section>
 </main>
-
-<!-- <main>
-  <header class="brand-name">
-    <a [routerLink]="['/']">
-      <img
-        class="brand-logo"
-        src="/MeetRoom2.png"
-        alt="logo"
-        aria-hidden="true"
-      />
-    </a>
-
-    <div class="auth-buttons" *ngIf="!isLoggedIn">
-      <a class="signup-button" [routerLink]="['/signup']">Sign up</a>
-      <a class="login-button" [routerLink]="['/login']">Log in</a>
-    </div>
-
-    <div class="user-info" *ngIf="isLoggedIn">
-      <img [src]="profileImageUrl" alt="Profile" class="profile-image" />
-      <span class="codename">{{ codename }}</span>
-    </div>
-  </header>
-
-  <section class="content">
-    <router-outlet></router-outlet>
-  </section>
-</main> -->
