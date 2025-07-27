@@ -90,15 +90,15 @@ export class LoginComponent {
         .pipe(first())
         .subscribe({
           next: (res) => {
-            console.log('Password changed:', res);
+            console.log('เปลี่ยนรหัสผ่านสำเร็จ:', res);
             this.closeResetModal();
           },
           error: (err) => {
-            console.error('Password change error:', err.message);
+            console.error('เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน:', err.message);
           },
         });
     } else {
-      console.log('Reset form invalid');
+      console.log('รีเซ็ตแบบฟอร์มไม่ถูกต้อง');
     }
   }
 }

@@ -87,8 +87,7 @@ func SeedRoles() {
 	}
 
 	for _, r := range roles {
-		var existing entity.Role
-		db.Where("role_name = ?", r.RoleName).First(&existing)
+		db.FirstOrCreate(&r, entity.Role{RoleName: r.RoleName})
 	}
 }
 
@@ -100,14 +99,13 @@ func SeedStatus() {
 	}
 
 	for _, s := range status {
-		var existing entity.Status
-		db.Where("status_name = ?", s.StatusName).First(&existing)
+		db.FirstOrCreate(&s, entity.Status{StatusName: s.StatusName})
 	}
 }
 
 func SeedTypes() {
 	types := []entity.Type{
-		{TypeName: "VIP"}, // Capacity >= 50
+		{TypeName: "VIP"},      // Capacity >= 50
 		{TypeName: "ขนาดใหญ่"}, // Capacity >= 50
 		{TypeName: "ขนาดกลาง"}, // Capacity 10–49
 		{TypeName: "ขนาดเล็ก"}, // Capacity < 10
@@ -186,14 +184,13 @@ func SeedRooms() {
 
 		if err == gorm.ErrRecordNotFound {
 			if err := db.Create(&r).Error; err != nil {
-				fmt.Printf("❌ เพิ่มห้อง '%s' ไม่สำเร็จ: %v\n", r.RoomName, err)
+				fmt.Printf("เพิ่มห้อง '%s' ไม่สำเร็จ: %v\n", r.RoomName, err)
 			} else {
-				fmt.Printf("✅ เพิ่มห้อง '%s' สำเร็จ\n", r.RoomName)
+				fmt.Printf("เพิ่มห้อง '%s' สำเร็จ\n", r.RoomName)
 			}
-		} else {
-			fmt.Printf("⚠️ ห้อง '%s' มีอยู่แล้ว, ข้าม...\n", r.RoomName)
 		}
 	}
+
 }
 
 func SeedUsers() {
@@ -250,12 +247,10 @@ func SeedUsers() {
 
 		if err == gorm.ErrRecordNotFound {
 			if err := db.Create(&u).Error; err != nil {
-				fmt.Printf("❌ สร้าง %s ไม่สำเร็จ: %v\n", u.CodeName, err)
+				fmt.Printf("สร้าง %s ไม่สำเร็จ: %v\n", u.CodeName, err)
 			} else {
-				fmt.Printf("✅ เพิ่มผู้ใช้ %s สำเร็จ\n", u.CodeName)
+				fmt.Printf("เพิ่มผู้ใช้ %s สำเร็จ\n", u.CodeName)
 			}
-		} else {
-			fmt.Printf("⚠️ ผู้ใช้ %s มีอยู่แล้ว, ข้าม...\n", u.CodeName)
 		}
 	}
 }
@@ -289,11 +284,9 @@ func SeedBookings() {
 		}
 
 		if err := db.Create(&booking).Error; err != nil {
-			fmt.Println("❌ สร้างการจองไม่สำเร็จ:", err)
+			fmt.Println("สร้างการจองไม่สำเร็จ:", err)
 		} else {
-			fmt.Println("✅ สร้างการจองสำเร็จ:", booking.Title)
+			fmt.Println("สร้างการจองสำเร็จ:", booking.Title)
 		}
-	} else {
-		fmt.Println("⚠️ มีการจองในช่วงเวลานี้แล้ว")
-	}
+	} 
 }
