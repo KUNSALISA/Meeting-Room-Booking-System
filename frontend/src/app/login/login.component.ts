@@ -8,18 +8,27 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { first } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm!: FormGroup;
   resetForm!: FormGroup;
-  showResetModal = false;
+  showResetBox = false;
+
+  openResetBox() {
+    this.showResetBox = true;
+  }
+
+  closeResetBox() {
+    this.showResetBox = false;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -73,14 +82,6 @@ export class LoginComponent {
     }
   }
 
-  openResetModal() {
-    this.showResetModal = true;
-  }
-
-  closeResetModal() {
-    this.showResetModal = false;
-  }
-
   submitReset() {
     if (this.resetForm.valid) {
       const passwordData = this.resetForm.value;
@@ -91,7 +92,8 @@ export class LoginComponent {
         .subscribe({
           next: (res) => {
             console.log('เปลี่ยนรหัสผ่านสำเร็จ:', res);
-            this.closeResetModal();
+            this.resetForm.reset();
+            this.closeResetBox();
           },
           error: (err) => {
             console.error('เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน:', err.message);
