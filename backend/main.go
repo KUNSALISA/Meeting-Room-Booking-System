@@ -25,7 +25,9 @@ func main() {
 	router := r.Group("/")
 	{
 		router.Use(middleware.Authorizes())
+		r.GET("/status", controllers.GetStatus)
 		r.GET("/all-room", controllers.GetAllRoom)
+		r.GET("/all-room/:id", controllers.GetAllRoom)
 		r.POST("/booking",controllers.PostBooking)
 
 	}

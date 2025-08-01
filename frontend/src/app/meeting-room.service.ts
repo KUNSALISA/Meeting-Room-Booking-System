@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { RoomIn, BookingIn } from './meeting-room';
+import { RoomIn, BookingIn, RoomStatus } from './meeting-room';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,28 @@ export class MeetingRoomService {
     const url = `${this.baseUrl}/all-room`;
     const headers = this.getAuthHeaders();
     return this.http.get<RoomIn[]>(url, { headers }).pipe(
+      catchError((err) => {
+        console.error('Error fetching rooms', err);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  getRoomById(id: string): Observable<RoomIn> {
+    const url = `${this.baseUrl}/all-room/${id}`;
+    const headers = this.getAuthHeaders();
+    return this.http.get<RoomIn>(url, { headers }).pipe(
+      catchError((err) => {
+        console.error('Error fetching room', err);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  getAllStatus(): Observable<RoomStatus[]> {
+    const url = `${this.baseUrl}/status`;
+    const headers = this.getAuthHeaders();
+    return this.http.get<RoomStatus[]>(url, { headers }).pipe(
       catchError((err) => {
         console.error('Error fetching rooms', err);
         return throwError(() => err);

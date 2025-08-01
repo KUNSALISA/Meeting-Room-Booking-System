@@ -14,32 +14,52 @@ import { MeetingRoomService } from '../meeting-room.service';
 export class RoomMapComponent {
   dataRoom: RoomIn[] = [];
   selectedFloor = 1;
-  selectedRoom: RoomIn | null = null;
+  selectedRoomDetail: RoomIn | null = null;
 
   constructor(private roomService: MeetingRoomService) {}
 
-  mgOnInit() {
+  ngOnInit() {
     this.roomService.getAllRooms().subscribe({
       next: (rooms) => {
+        console.log('Rooms fetched:', rooms);
         this.dataRoom = rooms;
+      },
+      error: (err) => {
+        console.error('Failed to load rooms', err);
       },
     });
   }
 
   selectFloor(floor: number) {
+    console.log('Selected floor:', floor);
     this.selectedFloor = floor;
-    this.selectedRoom = null;
+    this.selectedRoomDetail = null;
+    console.log('Rooms of new floor:', this.roomsOfSelectedFloor);
   }
 
   getFloorNumberFromLocation(location: string): number {
     const match = location.match(/\d+/);
     return match ? parseInt(match[0], 10) : 0;
   }
-  
+
   get roomsOfSelectedFloor(): RoomIn[] {
-    return this.dataRoom.filter(
+    const filtered = this.dataRoom.filter(
       (room) =>
         this.getFloorNumberFromLocation(room.Location) === this.selectedFloor
     );
+    console.log('Rooms of floor', this.selectedFloor, filtered);
+    return filtered;
+  }
+
+  loadRoomDetail(roomId: number) {
+    this.roomService.getRoomById(roomId.toString()).subscribe({
+      next: (roomDetail) => {
+        this.selectedRoomDetail = roomDetail;
+      },
+      error: (err) => {
+        console.error('Error loading room detail', err);
+        this.selectedRoomDetail = null;
+      },
+    });
   }
 }

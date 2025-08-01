@@ -27,8 +27,8 @@
 
         <g
           *ngFor="let room of roomsOfSelectedFloor"
-          (click)="selectedRoom = room"
-          [class.selected]="selectedRoom?.ID === room.ID"
+          (click)="loadRoomDetail(room.ID)"
+          [class.selected]="selectedRoomDetail?.ID === room.ID"
           style="cursor: pointer"
         >
           <rect
@@ -63,8 +63,19 @@
     </div>
 
     <div class="room-detail" id="roomDetail">
-      <!-- แสดงรายละเอียดห้อง -->
-      <p>เลือกห้องเพื่อดูรายละเอียด</p>
+      <ng-container *ngIf="selectedRoomDetail; else noSelection">
+        <h4>รายละเอียดห้อง {{ selectedRoomDetail.RoomName }}</h4>
+        <p>
+          ชั้น: {{ getFloorNumberFromLocation(selectedRoomDetail.Location) }}
+        </p>
+        <p>ความจุ: {{ selectedRoomDetail.Capacity }} คน</p>
+        <p>อุปกรณ์: {{ selectedRoomDetail.Equipment.join(", ") }}</p>
+        <p>สถานะ: {{ selectedRoomDetail.Status.StatusName || "ไม่ระบุ" }}</p>
+        <p>ประเภทห้อง: {{ selectedRoomDetail.Types.TypeName || "ไม่ระบุ" }}</p>
+      </ng-container>
+      <ng-template #noSelection>
+        <p>เลือกห้องเพื่อดูรายละเอียด</p>
+      </ng-template>
     </div>
   </div>
 </div>
