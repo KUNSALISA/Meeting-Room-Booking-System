@@ -134,7 +134,7 @@ func SeedRooms() {
 	rooms := []entity.Room{
 		{
 			RoomName:  "Meeting Room Extra 1",
-			Location:  "ชั้น 12 อาคาร TX",
+			Location:  "ชั้น 12",
 			Capacity:  80,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["VIP"],
@@ -142,7 +142,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room Extra 2",
-			Location:  "ชั้น 12 อาคาร TX",
+			Location:  "ชั้น 12",
 			Capacity:  60,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["VIP"],
@@ -150,7 +150,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room A1",
-			Location:  "ชั้น 1 อาคาร TX",
+			Location:  "ชั้น 1",
 			Capacity:  100,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดใหญ่"],
@@ -158,7 +158,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room A10",
-			Location:  "ชั้น 1 อาคาร TX",
+			Location:  "ชั้น 1",
 			Capacity:  10,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดเล็ก"],
@@ -166,7 +166,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room B1",
-			Location:  "ชั้น 2 อาคาร TX",
+			Location:  "ชั้น 2",
 			Capacity:  20,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดกลาง"],
@@ -174,7 +174,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room B2",
-			Location:  "ชั้น 2 อาคาร TX",
+			Location:  "ชั้น 2",
 			Capacity:  30,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดกลาง"],
@@ -182,7 +182,7 @@ func SeedRooms() {
 		},
 		{
 			RoomName:  "Meeting Room C1",
-			Location:  "ชั้น 3 อาคาร TX",
+			Location:  "ชั้น 3",
 			Capacity:  8,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดเล็ก"],
