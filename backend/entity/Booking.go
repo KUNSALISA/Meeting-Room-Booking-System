@@ -20,6 +20,4 @@ type Booking struct {
 	RoomID uint
 	Room   Room `gorm:"foreignKey:RoomID"`
 
-	StatusID uint
-	Status   Status `gorm:"foreignKey:StatusID"`
 }

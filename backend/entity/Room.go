@@ -15,5 +15,8 @@ type Room struct {
 	TypeID uint
 	Types   Type `gorm:"foreignKey:TypeID"`
 
+	StatusID uint
+	Status   Status `gorm:"foreignKey:StatusID"`
+
 	Bookings []Booking `gorm:"foreignKey:RoomID"`
 }

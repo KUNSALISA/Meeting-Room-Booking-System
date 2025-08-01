@@ -8,5 +8,5 @@ type Status struct {
 	gorm.Model
 	StatusName string
 
-	Booking []Booking `gorm:"foreignKey:StatusID"`
+	Rooms []Room `gorm:"foreignKey:StatusID"`
 }

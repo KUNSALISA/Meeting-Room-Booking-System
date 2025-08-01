@@ -121,6 +121,11 @@ func SeedRooms() {
 	var types []entity.Type
 	db.Find(&types)
 
+	var booked, Available, Damaged entity.Status
+	db.Where("status_name = ?", "ถูกจองแล้ว").First(&booked)
+	db.Where("status_name = ?", "ห้องว่าง").First(&Available)
+	db.Where("status_name = ?", "เสียหาย").First(&Damaged)
+
 	typeMap := make(map[string]uint)
 	for _, t := range types {
 		typeMap[t.TypeName] = t.ID
@@ -133,6 +138,7 @@ func SeedRooms() {
 			Capacity:  80,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["VIP"],
+			StatusID:  Available.ID,
 		},
 		{
 			RoomName:  "Meeting Room Extra 2",
@@ -140,6 +146,7 @@ func SeedRooms() {
 			Capacity:  60,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "ระบบวิดีโอคอนเฟอเรนซ์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["VIP"],
+			StatusID:  Available.ID,
 		},
 		{
 			RoomName:  "Meeting Room A1",
@@ -147,6 +154,7 @@ func SeedRooms() {
 			Capacity:  100,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดใหญ่"],
+			StatusID:  booked.ID,
 		},
 		{
 			RoomName:  "Meeting Room A10",
@@ -154,6 +162,7 @@ func SeedRooms() {
 			Capacity:  10,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดเล็ก"],
+			StatusID:  Available.ID,
 		},
 		{
 			RoomName:  "Meeting Room B1",
@@ -161,6 +170,7 @@ func SeedRooms() {
 			Capacity:  20,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดกลาง"],
+			StatusID:  Available.ID,
 		},
 		{
 			RoomName:  "Meeting Room B2",
@@ -168,6 +178,7 @@ func SeedRooms() {
 			Capacity:  30,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดกลาง"],
+			StatusID:  Available.ID,
 		},
 		{
 			RoomName:  "Meeting Room C1",
@@ -175,6 +186,7 @@ func SeedRooms() {
 			Capacity:  8,
 			Equipment: pq.StringArray{"โปรเจคเตอร์", "ไวท์บอร์ด", "ไมค์ประชุม", "ลำโพง", "HDMI", "ระบบเก็บเสียง", "เลเซอร์พอยเตอร์", "อินเทอร์เน็ต"},
 			TypeID:    typeMap["ขนาดเล็ก"],
+			StatusID:  Damaged.ID,
 		},
 	}
 
@@ -258,11 +270,9 @@ func SeedUsers() {
 func SeedBookings() {
 	var user entity.User
 	var room entity.Room
-	var status entity.Status
 
 	db.Where("email = ?", "Alice_Iron@gmail.com").First(&user)
 	db.Where("room_name = ?", "Meeting Room A1").First(&room)
-	db.Where("status_name = ?", "ถูกจองแล้ว").First(&status)
 
 	date := time.Date(2025, 7, 15, 0, 0, 0, 0, time.Local)
 	start := time.Date(2025, 7, 15, 9, 0, 0, 0, time.Local)
@@ -278,7 +288,6 @@ func SeedBookings() {
 			Date:        date,
 			StartTime:   start,
 			EndTime:     end,
-			StatusID:    status.ID,
 			UserID:      user.ID,
 			RoomID:      room.ID,
 		}
@@ -288,5 +297,5 @@ func SeedBookings() {
 		} else {
 			fmt.Println("สร้างการจองสำเร็จ:", booking.Title)
 		}
-	} 
+	}
 }
