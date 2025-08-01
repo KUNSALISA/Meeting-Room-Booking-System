@@ -1,0 +1,78 @@
+.section-grid {
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: 0.5rem;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.floor-menu {
+  background: #ffffff;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #46236e;
+}
+
+.floor-menu button {
+  color: #ffffff;
+  background-color: #350766;
+  display: block;
+  margin-bottom: 0.3rem;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.floor-menu button:hover {
+  background-color: #f3ebff;
+  color: #000000dd;
+  transform: scale(1.03);
+  transition: all 0.2s ease;
+}
+
+.floor-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.floor-menu::-webkit-scrollbar-thumb {
+  background-color: #bbbbbb;
+  border-radius: 2px;
+}
+
+.room-grid {
+  display: grid;
+  width: 700px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  background: #ffff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #46236e;
+}
+
+.room-detail {
+  background: #fff;
+  padding: 1rem;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 2px solid #46236e;
+}
+
+/*ยังไม่ได้ใช้*/
+.room-box {
+  padding: 1rem;
+  border: 1px solid #320b5d;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  background: #e5d4ff;
+}

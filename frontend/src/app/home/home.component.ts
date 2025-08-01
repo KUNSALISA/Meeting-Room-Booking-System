@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { RoomMapComponent } from '../room-map/room-map.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterModule, DatePipe],
+  imports: [RouterModule, DatePipe, RoomMapComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,15 +1,18 @@
-<div class = "container-home">
-  <header class = "header-home">
+<div class="container-home">
+  <header class="header-home">
     <div>
-      <h1 class = "title-home">
-        Meeting Room Booking
-      </h1>
-      <div class = "data-day">
-        <p class = "data-value">
-          {{ currentDate | date: 'EEEE d MMMM yyyy' : undefined : 'th-TH' }}
+      <h1 class="title-home">Meeting Room Booking</h1>
+      <div class="data-day">
+        <p class="data-value">
+          {{ currentDate | date : "EEEE d MMMM yyyy" : undefined : "th-TH" }}
         </p>
       </div>
     </div>
   </header>
-  
+  <section class="section-floor-card">
+    <app-room-map></app-room-map>
+  </section>
+  <div class="schedule-card">
+    
+  </div>
 </div>
