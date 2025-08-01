@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { SignupIn } from '../login';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 
 @Component({
@@ -22,7 +23,7 @@ export class SignupComponent {
   uploadingImage: boolean = false;
   imageData: string = '';
 
-  constructor(private fb: FormBuilder, private signupService: LoginService) {}
+  constructor(private fb: FormBuilder, private signupService: LoginService, private router: Router) {}
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -71,15 +72,15 @@ export class SignupComponent {
         .pipe(finalize(() => console.log('Signup request completed')))
         .subscribe({
           next: (res) => {
-            console.log('Signup success', res);
-            // ทำอะไรต่อ เช่น แสดงข้อความ แจ้งเตือน หรือ redirect
+            console.log('สมัครสมาชิกสำเร็จ', res);
+            this.router.navigate(['login']);
           },
           error: (err) => {
-            console.error('Signup failed', err);
+            console.error('ไม่สามารถสมัครได้', err);
           },
         });
     } else {
-      console.log('Signup form invalid');
+      console.log('ข้อมูลในการสมัครไม่ถูกต้อง');
     }
   }
 }

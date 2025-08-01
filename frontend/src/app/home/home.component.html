@@ -1,16 +1,15 @@
-<h1>home</h1>
-<!-- <main>
-  <a [routerLink]="['/']">
-    <header class="brand-name">
-      <img
-        class="brand-logo"
-        src="/MeetRoom2.png"
-        alt="logo"
-        aria-hidden="true"
-      />
-    </header>
-  </a>
-  <section class="content">
-    <router-outlet></router-outlet>
-  </section>
-</main> -->
+<div class = "container-home">
+  <header class = "header-home">
+    <div>
+      <h1 class = "title-home">
+        Meeting Room Booking
+      </h1>
+      <div class = "data-day">
+        <p class = "data-value">
+          {{ currentDate | date: 'EEEE d MMMM yyyy' : undefined : 'th-TH' }}
+        </p>
+      </div>
+    </div>
+  </header>
+  
+</div>
