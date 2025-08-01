@@ -37,22 +37,3 @@
   color: #000000;
   margin-bottom: 10px;
 }
-
-.section-floor-card {
-  padding: 2rem 0;
-  background-color: #f2f2f2;
-  width: 100%;
-  max-width: 1400px; 
-  height: 100%;
-  max-height: 600px; 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-
-app-room-map {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}

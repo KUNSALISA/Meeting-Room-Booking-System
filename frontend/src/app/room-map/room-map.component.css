@@ -1,24 +1,34 @@
+.section-floor-card {
+  margin-top: 10px;
+  padding: 2rem;
+  background-color: #f2f2f2;
+  width: 100%;
+  max-width: 1520px;
+  height: auto; 
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
 .section-grid {
   width: 100%;
-  max-width: 1200px;
-  height: 600px;
-  margin: 0 1.5rem;
+  max-width: 1500px;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  gap: 0.5rem;
-  height: auto;
+  grid-template-columns: 200px minmax(920px, 2fr) 300px;
+  gap: 1rem;
   box-sizing: border-box;
 }
 
 .floor-menu {
   background: #ffffff;
+  width: 100%;
+  max-width: 200px;
   max-height: 500px;
   overflow-y: auto;
   padding: 1rem;
   border-radius: 8px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #46236e;
+  border: 2px solid #46236e;
+  box-sizing: border-box;
 }
 
 .floor-menu button {
@@ -50,24 +60,25 @@
 
 .room-grid {
   display: grid;
-  width: 700px;
+  width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 1rem;
-  background: #ffff;
+  background: #fff;
   padding: 1rem;
   border-radius: 8px;
   border: 2px solid #46236e;
+  box-sizing: border-box;
 }
 
 .room-detail {
   background: #fff;
   padding: 1rem;
-  margin-right: 10px;
   border-radius: 8px;
   border: 2px solid #46236e;
+  box-sizing: border-box;
 }
 
-/*ยังไม่ได้ใช้*/
+/* ยังไม่ได้ใช้ */
 .room-box {
   padding: 1rem;
   border: 1px solid #320b5d;
@@ -75,4 +86,25 @@
   text-align: center;
   cursor: pointer;
   background: #e5d4ff;
+}
+
+@media (max-width: 1024px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .floor-menu {
+    max-width: 100%;
+  }
+
+  .room-grid,
+  .room-detail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .room-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
 }

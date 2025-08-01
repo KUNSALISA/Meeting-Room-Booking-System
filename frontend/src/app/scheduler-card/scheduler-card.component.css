@@ -1,0 +1,23 @@
+.schedule-card {
+  margin-top: 10px;
+  padding: 2rem;
+  background-color: #f2f2f2;
+  width: 100%;
+  max-width: 1520px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.title-sch {
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.small-note {
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 18px;
+}
